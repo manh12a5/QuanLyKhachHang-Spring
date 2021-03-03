@@ -37,11 +37,11 @@ public class CustomerController {
 
     @PostMapping("/create")
     public ModelAndView createCustomer(@ModelAttribute Customer customer) {
+        ModelAndView modelAndView = new ModelAndView("create");
+        modelAndView.addObject("create", new Customer());
         int id = customerService.findAll().size();
         customer.setId(id);
         customerService.save(customer);
-        ModelAndView modelAndView = new ModelAndView("create");
-        modelAndView.addObject("create", new Customer());
         return modelAndView;
     }
 
